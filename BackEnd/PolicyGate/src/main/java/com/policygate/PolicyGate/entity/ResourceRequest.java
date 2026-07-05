@@ -1,21 +1,26 @@
 package com.policygate.PolicyGate.entity;
 
-import jakarta.persistence.*;
 import java.time.Instant;
 
-@Entity
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import lombok.Data;
+
+@Data
 @Table(name = "resource_requests")
 public class ResourceRequest {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String requesterEmail;
     private String resourceType;   // e.g. "KAFKA_TOPIC", "DATABASE", "ENV_ACCESS"
     private String resourceName;
     private String targetEnvironment; // e.g. "prod", "staging"
-
     @Enumerated(EnumType.STRING)
     private RequestStatus status;
 
